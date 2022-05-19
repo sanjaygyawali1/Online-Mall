@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}Signup Page{% endblock %}
+{% block check %}Signup garna lai page{% endblock %}
+
+{% load static %}
+{% block content %}
+    <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Store</a></li>
+            <li class="active">Standart forms</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN SIDEBAR -->
+          <div class="sidebar col-md-3 col-sm-5">
+            <ul class="list-group margin-bottom-25 sidebar-menu">
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Ladies</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Kids</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Accessories</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sports</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Brands</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Electronics</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Home &amp; Garden</a></li>
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Custom Link</a></li>
+            </ul>
+          </div>
+          <!-- END SIDEBAR -->
+
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-7">
+            <h1>Standardforms</h1>
+            <div class="content-form-page">
+              <form method="POST" role="form" class="form-horizontal form-without-legend">
+                  {% csrf_token %}
+                  {% if messages %}
+                  {% for message in messages %}
+                  <div class="btn btn-primary"> {{message}} </div>
+                  {% endfor %}
+                  {% endif %}
+                  <div class="form-group">
+                   <label class="col-lg-2 control-label" for="first_name">First Name <span class="require">*</span></label>
+                   <div class="col-lg-8">
+                      <input type="text" id="first_name" name="first_name" class="form-control">
+                    </div>
+                  </div>
+                 <div class="form-group">
+                  <label class="col-lg-2 control-label" for="last_name">Last Name <span class="require">*</span></label>
+                  <div class="col-lg-8">
+                    <input type="text" id="last_name" name="last_name" class="form-control">
+                  </div>
+                  </div>
+                 <div class="form-group">
+                  <label class="col-lg-2 control-label" for="username">User Name <span class="require">*</span></label>
+                  <div class="col-lg-8">
+                    <input type="text" id="username" name="username" class="form-control">
+                  </div>
+                  </div>
+                   <div class="form-group">
+                  <label class="col-lg-2 control-label" for="email">Email<span class="require">*</span></label>
+                  <div class="col-lg-8">
+                    <input type="text" id="email" name="email" class="form-control">
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <label class="col-lg-2 control-label" for="password">Password <span class="require">*</span></label>
+                  <div class="col-lg-8">
+                    <input type="Password" id="password" name="password" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label" for="password1">Confirm Password <span class="require">*</span></label>
+                  <div class="col-lg-8">
+                    <input type="Password" id="password1" name="password1" class="form-control">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
+                    <input name = "submit" value = "submit" class="btn btn-primary" type="submit">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+      </div>
+    </div>
+{% endblock %}

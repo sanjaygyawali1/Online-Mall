@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- BEGIN SLIDER -->
+    <div class="page-slider margin-bottom-35">
+        <div id="carousel-example-generic" class="carousel slide carousel-slider">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+               {% for slider in sliders %}
+                <li data-target="#carousel-example-generic" data-slide-to="{{ slider.rank }}" class="{{ slider.status }}"></li>
+               {% endfor %}
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <!-- First slide -->
+                {% for slider in sliders %}
+
+                <div class="item carousel-item-{{slider.rank}} {{slider.status}} ">
+                    <div class="container">
+                        <div class="carousel-position-four text-center">
+                            <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
+                                Tones of <br/><span class="color-red-v2">{{ slider.title}}</span><br/> designed
+                            </h2>
+                            <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">{{ slider.description }} <br/>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+           <style>
+             .carousel-slider .carousel-item-{{slider.rank}} {
+              background: url({{ slider.image.url }});
+              background-size: cover;
+              background-position: center center;}
+           </style>
+
+                {% endfor %}
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+            <a class="right carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="next">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+    <!-- END SLIDER -->
+
+    <div class="main">
+      <div class="container">
+        <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN SALE PRODUCT -->
+          <div class="col-md-12 sale-product">
+            <h2>New Arrivals</h2>
+            <div class="owl-carousel owl-carousel5">
+              {% for item in items %}
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="{{item.image.url}}" class="img-responsive" alt="{{item.title}}">
+                    <div>
+                      <a href="{{item.image.url}}" class="btn btn-default fancybox-button">Zoom</a>
+                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                    </div>
+                  </div>
+                  <h3><a href="{{item.get_absolute_url}}">{{item.title}}</a></h3>
+                  <div class="pi-price">{{item.price}}</div>
+                  <a href="{{item.get_add_to_cart}}" class="btn btn-default add2cart">Add to cart</a>
+                  <div class="sticker sticker-{{item.labels}}"></div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <!-- END SALE PRODUCT -->
+        </div>
+        <!-- END SALE PRODUCT & NEW ARRIVALS -->
+
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40 ">
+          <!-- BEGIN SIDEBAR -->
+          <div class="sidebar col-md-3 col-sm-4">
+            <ul class="list-group margin-bottom-25 sidebar-menu">
+               {% for category in categorys %}
+              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i>{{category.title}}</a></li>
+                {% endfor %}
+            </ul>
+          </div>
+          <!-- END SIDEBAR -->
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-8">
+            <h2>Sale Items</h2>
+            <div class="owl-carousel owl-carousel3">
+              <div>
+                {% for item in item_sale %}
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="{{item.image.url}}" class="img-responsive" alt="{{item.title}}">
+                    <div>
+                      <a href="{{item.image.url}}" class="btn btn-default fancybox-button">Zoom</a>
+                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                    </div>
+                  </div>
+                  <h3><a href="item.get_absolute_url">{{item.title}}</a></h3>
+                  <div class="pi-price">{{item.price}}</div>
+                  <a href="{{item.get_add_to_cart}}" class="btn btn-default add2cart">Add to cart</a>
+                  <div class="sticker sticker-{{item.labels}}"></div>
+                </div>
+              </div>
+              {% endfor %}
+
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+
+        <!-- BEGIN TWO PRODUCTS & PROMO -->
+        <div class="row margin-bottom-35 ">
+          <!-- BEGIN TWO PRODUCTS -->
+          <div class="col-md-6 two-items-bottom-items">
+            <h2>Hot Items</h2>
+            <div class="owl-carousel owl-carousel2">
+              <div>
+                {% for item in item_hot %}
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="{{item.image.url}}" class="img-responsive" alt="{{item.title}}">
+                    <div>
+                      <a href="{{item.image.url}}" class="btn btn-default fancybox-button">Zoom</a>
+                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                    </div>
+                  </div>
+                  <h3><a href="item.get_absolute_url">{{item.title}}</a></h3>
+                  <div class="pi-price">{{item.price}}</div>
+                  <a href="{{item.get_add_to_cart}}" class="btn btn-default add2cart">Add to cart</a>
+                    <div class="sticker sticker-{{item.labels}}"></div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+          </div>
+        </div>
+          <!-- END TWO PRODUCTS -->
+          <!-- BEGIN PROMO -->
+          <div class="col-md-6 shop-index-carousel">
+            <div class="content-slider">
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  {% for ad in ads %}
+                    <li data-target="#myCarousel" data-slide-to="{{ ad.rank }}" class="{{ ad.status }}"></li>
+                  {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                     {% for ad in ads %}
+                  <div class="item {{ ad.status }}">
+                    <img src="{{ ad.image.url }}"   class="img-responsive" alt="{{ad.title}}">
+                  </div>
+                     {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END PROMO -->
+        </div>        
+        <!-- END TWO PRODUCTS & PROMO -->
+          <!-- BEGIN BRANDS -->
+             <div class="brands">
+      <div class="container">
+            <div class="owl-carousel owl-carousel6-brands">
+              {% for brand in brands %}
+                <img src="{{ brand.image.url}}" alt="{{ brand.name}}" title="{{ brand.name}}" height="50", width="25">
+              {% endfor %}
+            </div>
+        </div>
+    </div>
+          <!-- END BRANDS -->
+      </div>
+    </div>
+
+{% endblock %}
